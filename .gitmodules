@@ -1,0 +1,3 @@
+[submodule "libc_lobb"]
+	path = libc_lobb
+	url = https://github.com/lobbyra/libc_lobb
