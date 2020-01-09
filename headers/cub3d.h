@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/01/09 10:43:05 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/09 13:29:06 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,9 @@ typedef struct 	s_player
 }				t_player;
 
 /* ### Parsing Declarations ### */
-int	header_miner_color(char *rgb);
+int		header_miner_color(char *rgb);
+int		*header_miner_res(char *raw_res);
+char	*header_miner_paths(char *raw_paths);
 
 
 #endif
