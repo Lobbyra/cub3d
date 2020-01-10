@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/01/09 13:29:06 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/10 15:12:02 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "mlx.h"
-# include "l_libc.h"
+# include "../libc_lobb/headers/l_libc.h"
 
 /* ### Options ### */
 # define MOVE_SPEED 1.1
@@ -88,6 +88,7 @@ typedef struct 		s_info
 	int				floor_color;
 	int				ceiling_color;
 	char			**map;
+	char			player_orientation;
 }					t_info;
 /*
 ** orientation is in degrese, 0 is oriented to east.
@@ -102,10 +103,19 @@ typedef struct 	s_player
 	float		rotation_speed;
 }				t_player;
 
+/* ### Debug Declarations ### */
+void	print_t_file(t_file *file);
+void	print_t_info(t_info *info);
+
 /* ### Parsing Declarations ### */
 int		header_miner_color(char *rgb);
 int		*header_miner_res(char *raw_res);
 char	*header_miner_paths(char *raw_paths);
+
+t_info	*init_info(void);
+void	free_info(t_info *info);
+t_file	*init_file(void);
+void	free_file(t_file *file);
 
 
 #endif
