@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 09:59:40 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/10 15:12:27 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/15 11:19:21 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	free_file(t_file *file)
 			free(file->raw_w_path);
 		if (file->raw_sprite_path)
 			free(file->raw_sprite_path);
+		if (file->raw_floor_color)
+			free(file->raw_floor_color);
+		if (file->raw_ceiling_color)
+			free(file->raw_ceiling_color);
 		if (file->raw_map)
 			free(file->raw_map);
 		free(file);

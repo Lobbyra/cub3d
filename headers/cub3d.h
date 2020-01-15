@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/01/10 15:12:02 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/15 14:19:06 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <errno.h>
+#include <string.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -33,27 +34,43 @@
 # define MOVE_SPEED 1.1
 # define ROTATION_SPEED 1.1
 # define FOV 90
+# define BUFFER_SIZE 100
 
-/* Line types readed binary operators */
-# define FLAG_PATH_NORTH 1
-# define FLAG_PATH_SOUTH 2
-# define FLAG_PATH_EAST 4
-# define FLAG_PATH_WEST 8
-# define FLAG_PATH_SPRITE 16
-# define FLAG_RESOLUTION 32
-# define FLAG_COLOR_FLOOR 64
-# define FLAG_COLOR_CEILING 128
-# define FLAG_MAP 256
-# define FLAG_EMPTY 512
-# define FLAG_UNKNOW 1024
+/* Line type sig */
+# define LSIG_EMPTY 1
+# define LSIG_RESOLUTION 2
+# define LSIG_NPATH 4
+# define LSIG_SPATH 8
+# define LSIG_EPATH 16
+# define LSIG_WPATH 32
+# define LSIG_SPRITE_PATH 64
+# define LSIG_FLOOR_CLR 128
+# define LSIG_CEILING_CLR 256
+# define LSIG_MAP 512
+# define LSIG_UNKNOW 1024
+# define LSIG_NULL 2048
+# define LSIG_COMPLETE 4096
 
 /* ### ERROR MESSAGES ### */
+
+/* Global err sig*/
+# define ERR_MEMALLOC 10
+# define ERR_UNKNOW 20
+# define ERR_ERRNO 30
+# define ERR_NOT_CUB 40
+# define ERR_MISSING 50
+# define ERR_DUPED_INFO 60
+
 /* header error messages */
-# define ERR_HEAD_MISS "Informations is missing in header"
-# define ERR_HEAD_UNKNO "Your header contain unknow informations"
-# define ERR_HEAD_RESOL "Your resolution is not valid"
-# define ERR_HEAD_FCOLR "Your floor color is not valid"
-# define ERR_HEAD_CCOLR "Your ceiling color is not valid"
+# define ERR_MSG_HEAD_MISS "Information(s) is missing in header.\n"
+# define ERR_MSG_HEAD_UNKNO "This line contain unknow information.\n"
+# define ERR_MSG_NOT_CUB "This program can't take other file than .cub.\n"
+# define ERR_MSG_MALLOC "Memory allocation error encountered.\n"
+# define ERR_MSG_DUPED "Same informations type is duplicated in your file.\n"
+
+# define ERR_MSG_HEAD_RESOL "Your resolution is not valid"
+# define ERR_MSG_HEAD_FCOLR "Your floor color is not valid"
+# define ERR_MSG_HEAD_CCOLR "Your ceiling color is not valid"
 
 /* Map error messages */
 # define ERR_MAP_WALLS "Your map is not surrounded by walls"
@@ -61,6 +78,7 @@
 # define ERR_MAP_FORMAT "Your map is not well formated"
 
 typedef int t_err;
+typedef int t_sig;
 
 typedef struct 		s_file
 {
@@ -71,9 +89,10 @@ typedef struct 		s_file
 	char			*raw_e_path;
 	char			*raw_w_path;
 	char			*raw_sprite_path;
+	char			*raw_floor_color;
+	char			*raw_ceiling_color;
 	char			*raw_map;
 	int				curr_line;
-	char			player_orientation;
 }					t_file;
 
 typedef struct 		s_info
@@ -104,18 +123,30 @@ typedef struct 	s_player
 }				t_player;
 
 /* ### Debug Declarations ### */
+void	print_t_sig(t_sig sig);
+void	print_t_err(t_err err);
 void	print_t_file(t_file *file);
 void	print_t_info(t_info *info);
 
 /* ### Parsing Declarations ### */
+/* Global */
+t_sig	detect_line(char *str);
+t_bool	is_map(char c);
+
+/* File */
+t_sig	get_file(t_file *file, char *path);
+t_err	print_err_file(int curr_line, t_err err);
+t_file	*init_file(void);
+void	free_file(t_file *file);
+int		get_map(t_file *file);
+
+/* Info */
 int		header_miner_color(char *rgb);
 int		*header_miner_res(char *raw_res);
 char	*header_miner_paths(char *raw_paths);
-
 t_info	*init_info(void);
 void	free_info(t_info *info);
-t_file	*init_file(void);
-void	free_file(t_file *file);
+
 
 
 #endif

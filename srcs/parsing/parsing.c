@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_file.c                                        :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 09:53:05 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/15 13:29:13 by jecaudal         ###   ########.fr       */
+/*   Created: 2020/01/09 15:59:28 by jecaudal          #+#    #+#             */
+/*   Updated: 2020/01/09 16:08:35 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_file	*init_file(void)
+t_info	*parsing(char *path)
 {
-	t_file	*new;
+	t_file	*file;
+	t_info	*info;
 
-	if (!(new = (t_file*)malloc(sizeof(t_file))))
+	file = init_file();
+	get_file(file, path);
+	if (parsing_infos(file) == FAILURE)
 		return (NULL);
-	new->raw_res = NULL;
-	new->raw_n_path = NULL;
-	new->raw_s_path = NULL;
-	new->raw_e_path = NULL;
-	new->raw_w_path = NULL;
-	new->raw_sprite_path = NULL;
-	new->raw_floor_color = NULL;
-	new->raw_ceiling_color = NULL;
-	new->raw_map = NULL;
-	new->curr_line = 0;
-
-	return (new);
+	if (parsing_map(file) == FAILURE)
+		return (NULL);
+	info = get_info(file);
+	return (info);
 }

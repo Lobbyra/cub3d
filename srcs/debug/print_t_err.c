@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_file.c                                        :+:      :+:    :+:   */
+/*   print_t_err.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 09:53:05 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/15 13:29:13 by jecaudal         ###   ########.fr       */
+/*   Created: 2020/01/15 13:31:28 by jecaudal          #+#    #+#             */
+/*   Updated: 2020/01/15 13:37:14 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_file	*init_file(void)
+void	print_t_err(t_err err)
 {
-	t_file	*new;
-
-	if (!(new = (t_file*)malloc(sizeof(t_file))))
-		return (NULL);
-	new->raw_res = NULL;
-	new->raw_n_path = NULL;
-	new->raw_s_path = NULL;
-	new->raw_e_path = NULL;
-	new->raw_w_path = NULL;
-	new->raw_sprite_path = NULL;
-	new->raw_floor_color = NULL;
-	new->raw_ceiling_color = NULL;
-	new->raw_map = NULL;
-	new->curr_line = 0;
-
-	return (new);
+	if (err == ERR_MEMALLOC)
+		l_putstr("ERR_MEMALLOC\n");
+	else if (err == ERR_UNKNOW)
+		l_putstr("ERR_UNKNOW\n");
+	else if (err == ERR_ERRNO)
+		l_putstr("ERR_ERRNO\n");
+	else if (err == ERR_NOT_CUB)
+		l_putstr("ERR_NOT_CUB\n");
+	else if (err == ERR_MISSING)
+		l_putstr("ERR_MISSING\n");
+	else if (err == ERR_DUPED_INFO)
+		l_putstr("ERR_DUPED_INFO\n");
 }

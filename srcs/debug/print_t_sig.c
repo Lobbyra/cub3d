@@ -6,11 +6,19 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 13:31:57 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/13 14:27:31 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/15 10:54:34 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	print_t_sig_part2(t_sig sig)
+{
+	if (sig == ERR_NOT_CUB)
+		ft_printf("ERR_NOT_CUB\n");
+	else if (sig == LSIG_COMPLETE)
+		ft_printf("LSIG_COMPLETE\n");
+}
 
 void	print_t_sig(t_sig sig)
 {
@@ -36,4 +44,6 @@ void	print_t_sig(t_sig sig)
 		ft_printf("LSIG_UNKNOW\n");
 	else if (sig == LSIG_EMPTY)
 		ft_printf("LSIG_EMPTY\n");
+	else
+		print_t_sig_part2(sig);
 }

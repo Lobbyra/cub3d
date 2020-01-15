@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_file.c                                        :+:      :+:    :+:   */
+/*   print_errno.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 09:53:05 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/15 13:29:13 by jecaudal         ###   ########.fr       */
+/*   Created: 2020/01/15 11:41:17 by jecaudal          #+#    #+#             */
+/*   Updated: 2020/01/15 11:49:16 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_file	*init_file(void)
+t_sig	print_errno(void)
 {
-	t_file	*new;
-
-	if (!(new = (t_file*)malloc(sizeof(t_file))))
-		return (NULL);
-	new->raw_res = NULL;
-	new->raw_n_path = NULL;
-	new->raw_s_path = NULL;
-	new->raw_e_path = NULL;
-	new->raw_w_path = NULL;
-	new->raw_sprite_path = NULL;
-	new->raw_floor_color = NULL;
-	new->raw_ceiling_color = NULL;
-	new->raw_map = NULL;
-	new->curr_line = 0;
-
-	return (new);
+	l_putstr("Error\n");
+	l_putstr(strerror(errno));
+	return (ERR_ERRNO);
 }
