@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/01/20 12:59:15 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/20 13:30:28 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ t_file	*init_file(void);
 void	free_file(t_file *file);
 int		get_map(t_file *file);
 t_bool	parsing_map(char *map, int curr_line);
+t_bool	parsing_path(char *path, int curr_line);
 t_bool	parsing_color(char *color, int curr_line);
 t_bool	parsing_resolution(char *resolution, int curr_line);
 
