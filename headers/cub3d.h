@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/01/15 14:19:06 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/17 14:10:08 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@
 # define ERR_MISSING 50
 # define ERR_DUPED_INFO 60
 
+/* MAP err sig*/
+# define ERR_MAP_HOLE 10
+# define ERR_MAP_PLAYDUP 20
+# define ERR_MAP_PLAY404 30
+# define ERR_MAP_MEMALLOC 40
+
 /* header error messages */
 # define ERR_MSG_HEAD_MISS "Information(s) is missing in header.\n"
 # define ERR_MSG_HEAD_UNKNO "This line contain unknow information.\n"
@@ -68,17 +74,18 @@
 # define ERR_MSG_MALLOC "Memory allocation error encountered.\n"
 # define ERR_MSG_DUPED "Same informations type is duplicated in your file.\n"
 
-# define ERR_MSG_HEAD_RESOL "Your resolution is not valid"
-# define ERR_MSG_HEAD_FCOLR "Your floor color is not valid"
-# define ERR_MSG_HEAD_CCOLR "Your ceiling color is not valid"
+# define ERR_MSG_HEAD_RESOL "Your resolution is not valid."
+# define ERR_MSG_HEAD_FCOLR "Your floor color is not valid."
+# define ERR_MSG_HEAD_CCOLR "Your ceiling color is not valid."
 
 /* Map error messages */
-# define ERR_MAP_WALLS "Your map is not surrounded by walls"
-# define ERR_MAP_UNKNO "Your map contain unknow value"
-# define ERR_MAP_FORMAT "Your map is not well formated"
+# define ERR_MSG_MAP_HOLE "Your map is not surrounded by walls."
+# define ERR_MSG_MAP_PLAY404 "Player not found."
+# define ERR_MSG_MAP_PLAYDUP "Your map contain two players or more."
 
 typedef int t_err;
 typedef int t_sig;
+
 
 typedef struct 		s_file
 {
@@ -139,6 +146,7 @@ t_err	print_err_file(int curr_line, t_err err);
 t_file	*init_file(void);
 void	free_file(t_file *file);
 int		get_map(t_file *file);
+t_bool	parsing_map(char *map, int curr_line);
 
 /* Info */
 int		header_miner_color(char *rgb);
