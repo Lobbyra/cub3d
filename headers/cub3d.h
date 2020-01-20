@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/01/20 10:46:26 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/20 12:59:15 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@
 # define ERR_COLOR_FORMAT 10
 # define ERR_COLOR_VALUE 20
 
+/* RESOLUTION err sig*/
+# define ERR_RESOLUTION_FORMAT 10
+# define ERR_RESOLUTION_VAL_X 20
+# define ERR_RESOLUTION_VAL_Y 30
+
 /* header error messages */
 # define ERR_MSG_HEAD_MISS "Information(s) is missing in header.\n"
 # define ERR_MSG_HEAD_UNKNO "This line contain unknow information.\n"
@@ -78,17 +83,17 @@
 # define ERR_MSG_MALLOC "Memory allocation error encountered.\n"
 # define ERR_MSG_DUPED "Same informations type is duplicated in your file.\n"
 
-# define ERR_MSG_CLR_FORMAT "The correct format if [C ]|[F ][R],[G],[B]\n"
-# define ERR_MSG_CLR_VALUE "The value of each color must be between 0 and 255\n"
+# define ERR_MSG_CLR_FORMAT "The correct format is [C ]|[F ][R],[G],[B].\n"
+# define ERR_MSG_CLR_VALUE "The value of each color must be between 0 and 255.\n"
 
-# define ERR_MSG_HEAD_RESOL "Your resolution is not valid."
-# define ERR_MSG_HEAD_FCOLR "Your floor color is not valid."
-# define ERR_MSG_HEAD_CCOLR "Your ceiling color is not valid."
+# define ERR_MSG_RES_FORMAT "The correct format is [R ][x][' '][y].\n"
+# define ERR_MSG_RES_VALUE_X "The value of x must be higher than 0.\n"
+# define ERR_MSG_RES_VALUE_Y "The value of y must be higher than 0.\n"
 
 /* Map error messages */
-# define ERR_MSG_MAP_HOLE "Your map is not surrounded by walls."
+# define ERR_MSG_MAP_HOLE "Your map is not surrounded by walls.\n"
 # define ERR_MSG_MAP_PLAY404 "Player not found."
-# define ERR_MSG_MAP_PLAYDUP "Your map contain two players or more."
+# define ERR_MSG_MAP_PLAYDUP "Your map contain two players or more.\n"
 
 typedef int t_err;
 typedef int t_sig;
@@ -155,6 +160,7 @@ void	free_file(t_file *file);
 int		get_map(t_file *file);
 t_bool	parsing_map(char *map, int curr_line);
 t_bool	parsing_color(char *color, int curr_line);
+t_bool	parsing_resolution(char *resolution, int curr_line);
 
 /* Info */
 int		header_miner_color(char *rgb);
