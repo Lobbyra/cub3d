@@ -6,14 +6,14 @@
 	- [x] Finir de tester parsing.c
 	- [x] A la fin de cette partie, faire la premiere release 0.01
 2. Workflow setup
-	- [ ] Tout les pushs seront des itérations de la versions precédente a partir de 0.01
-	- [ ] Création de la fenêtre et appel de la fonction *raycasting* dans le main.
-	- [ ] Fermeture de la fenetre par ESC ou par la croix rouge.
+	- [x] Tout les push seront des itérations de la versions precédente a partir
+	- [x] Création de la fenetre et appel de la fonction *raycasting* dans le main.
+	- [x] Fermeture de la fenetre par ESC ou par la croix rouge.
 	- [ ] Affichage d’une string par touche appuyer si -debug pour verifier que toute les touches sont bien détecté et géré.
 	- [ ] Si KEY_DEBUG est appuyé, change l’état stock->debug
-	- [ ] Push quand même une image avec un carré dessiné, C’est juste pour faire un push_img.
+	- [ ] Push quand meme une image avec un carré dessiné, C’est juste pour faire un push_img.
 	- [ ] Si la resolution du .cub est plus grande que celle de l’écran, lancer la fenetre en full screen.
-	- [ ] Faire un main qui appel la fonction qui va créer t_info. Si le premier argument est -debug, le main doit afficher t_info et la variable `t_bool debug` dans t_info sera mise à 1. Cette variable sera a copier dans t_stock.
+	- [ ] 	Faire un main qui appel la fonction qui va créer t_info. Si le premier argument est -debug, le main doit afficher t_info et la `t_bool debug` dans t_info sera mise a 1. Cette variable sera a copier dans t_stock.
 	- [ ] Fonction qui va init la grosse structure t_stock a partir de t_info.
 	- [ ] A la fin de cette partie faire la premiere release 0.1.
 3. Raycasting

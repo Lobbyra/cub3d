@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/02/08 15:12:14 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:42:49 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "mlx.h"
+# include <mlx.h>
 # include "../libc_lobb/headers/l_libc.h"
 
 /*
 ** ### Options ###
 */
+
 # define MOVE_SPEED 1.1
 # define ROTATION_SPEED 1.1
-# define FOV 90
+# define CUB_FOV 66
+# define CUB_RSPEED 2
+# define CUB_MSPEED 2
 # define BUFFER_SIZE 100
+
+# define WIDTH_SCREEN 2560
+# define HEIGHT_SCREEN 1440
 
 /*
 ** Line type sig
@@ -106,6 +112,22 @@
 # define ERR_MSG_MAP_PLAY404 "Player not found."
 # define ERR_MSG_MAP_PLAYDUP "Your map contain two players or more.\n"
 
+/*
+** KEYS
+*/
+
+#define KEY_Z 13
+#define KEY_S 1
+#define KEY_Q 0
+#define KEY_D 2
+#define KEY_ESCAPE 53
+
+#define KEY_UP 1
+#define KEY_DOWN 2
+#define KEY_RIGHT 4
+#define KEY_LEFT 8
+#define KEY_DEBUG 16
+
 typedef int t_err;
 typedef int t_sig;
 
@@ -139,6 +161,50 @@ typedef struct 		s_info
 	char			**map;
 	char			player_orientation;
 }					t_info;
+
+typedef struct		s_stock
+{
+	int				w;
+	int				h;
+	int				fov;
+	char			**map;
+	char			*n_path;
+	char			*s_path;
+	char			*e_path;
+	char			*w_path;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	void			*img_ptr;
+	int				move_speed;
+	int				floor_color;
+	char			*sprite_path;
+	int				ceiling_color;
+	int				rotation_speed;
+
+	double			posx;
+	double			posy;
+	double			dirx;
+	double			diry;
+	double			planex;
+	double			planey;
+	double			camerax;
+	t_bool			is_debug;
+	int				key;
+
+	int				x;
+	int				stepx;
+	int				stepy;
+	double			raydirx;
+	double			raydiry;
+	double			deltadistx;
+	double			deltadisty;
+	double			perpwalldist;
+
+	double			sidedistx;
+	double			sidedisty;
+	int				mapx;
+	int				mapy;
+}					t_stock;
 /*
 ** orientation is in degrese, 0 is oriented to east.
 ** Is initialized accord to the data read on the map.
@@ -201,6 +267,17 @@ char	*path_miner(char *raw_paths);
 t_info	*init_info(void);
 void	free_info(t_info *info);
 t_info	*get_info(t_file *file);
+
+/*
+** Stock
+*/
+
+t_stock		*init_stock(t_info *info);
+void		free_stock(t_stock *stock);
+int			key_pressed(int keycode, void *param);
+int			key_released(int keycode, void *param);
+int			cub_exit(void *param);
+void		raycasting(t_stock *stock);
 
 
 

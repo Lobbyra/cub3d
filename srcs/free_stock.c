@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   free_stock.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 09:55:43 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/09 09:58:52 by jecaudal         ###   ########.fr       */
+/*   Created: 2020/02/10 14:48:34 by jecaudal          #+#    #+#             */
+/*   Updated: 2020/02/10 14:59:53 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_player	*init_player(void)
+void	free_stock(t_stock *stock)
 {
-	t_player	*new;
-
-	if (!(new = (t_player*)malloc(sizeof(t_player))))
-		return (NULL);
-	new->move_speed = MOVE_SPEED;
-	new->rotation_speed = ROTATION_SPEED;
-	new->fov = FOV;
-	return (new);
+	l_freestrs(stock->map);
+	free(stock->n_path);
+	free(stock->s_path);
+	free(stock->e_path);
+	free(stock->w_path);
+	free(stock->sprite_path);
+	free(stock);
 }
