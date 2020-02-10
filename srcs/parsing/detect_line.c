@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 15:27:39 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/13 14:59:35 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:26:23 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,21 @@
 ** See defines for more details.
 */
 
-t_sig	detect_line(char *str)
+static t_bool	dl_is_map(char *line)
+{
+	char *temp;
+
+	temp = l_strclean(l_strdup(line), " ");
+	if (l_strbool(temp, &is_map) == TRUE)
+	{
+		free(temp);
+		return (TRUE);
+	}
+	free(temp);
+	return (FALSE);
+}
+
+t_sig			detect_line(char *str)
 {
 	if (!str)
 		return (LSIG_EMPTY);
@@ -39,7 +53,8 @@ t_sig	detect_line(char *str)
 		return (LSIG_FLOOR_CLR);
 	else if (l_strncmp(str, "C ", 2) == 0)
 		return (LSIG_CEILING_CLR);
-	else if (l_strbool(l_strclean(str, " "), &is_map) == TRUE)
+	else if (dl_is_map(str) == TRUE)
 		return (LSIG_MAP);
+	free(str);
 	return (LSIG_UNKNOW);
 }

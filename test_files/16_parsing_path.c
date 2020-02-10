@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:20:47 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/20 13:32:05 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/21 11:08:46 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(int argc, char **argv)
 	if (arg == 1)
 	{
 		/*SUPPOSED TRUE*/
-		if (parsing_path("S ./Makefile", 2) == TRUE)
+		if (parsing_path("S ./Makefile") == TRUE)
 			printf("TRUE");
 		else
 			printf("FALSE");
@@ -31,7 +31,7 @@ int		main(int argc, char **argv)
 	else if (arg == 2)
 	{
 		/*SUPPOSED TRUE*/
-		if (parsing_path("NO ./Makefile", 65) == TRUE)
+		if (parsing_path("NO ./Makefile") == TRUE)
 			printf("TRUE");
 		else
 			printf("FALSE");
@@ -40,7 +40,7 @@ int		main(int argc, char **argv)
 	else if (arg == 3)
 	{
 		/*SUPPOSED FALSE*/
-		if (parsing_path("SO ./DOES_NOT_EXIST", 2) == TRUE)
+		if (parsing_path("SO ./DOES_NOT_EXIST") == TRUE)
 			printf("TRUE");
 		else
 			printf("FALSE");
@@ -49,7 +49,7 @@ int		main(int argc, char **argv)
 	else if (arg == 4)
 	{
 		/*SUPPOSED TRUE*/
-		if (parsing_path("WE ./Makefile", 2) == TRUE)
+		if (parsing_path("WE ./Makefile") == TRUE)
 			printf("TRUE");
 		else
 			printf("FALSE");
@@ -58,7 +58,7 @@ int		main(int argc, char **argv)
 	else if (arg == 5)
 	{
 		/*SUPPOSED TRUE*/
-		if (parsing_path("EA /dev/ptyq8", 247) == TRUE)
+		if (parsing_path("EA /dev/ptyq8") == TRUE)
 			printf("TRUE");
 		else
 			printf("FALSE");

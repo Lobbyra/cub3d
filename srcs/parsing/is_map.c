@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 13:04:50 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/13 13:08:39 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/08 15:18:05 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_bool	is_map(char c)
 		c == 'N' ||
 		c == 'S' ||
 		c == 'E' ||
-		c == 'W' )
+		c == 'W')
 		return (TRUE);
 	return (FALSE);
 }

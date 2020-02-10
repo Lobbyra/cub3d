@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 09:53:05 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/15 13:29:13 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:42:18 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ t_file	*init_file(void)
 	new->raw_ceiling_color = NULL;
 	new->raw_map = NULL;
 	new->curr_line = 0;
-
+	errno = 0;
 	return (new);
 }

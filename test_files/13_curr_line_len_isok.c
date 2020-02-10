@@ -46,9 +46,9 @@ int		main(int argc, char **argv)
 		char *prev = "10111001N1010110011";
 		char *curr = "10111001N1010110011";
 		if (curr_line_len_isok(prev, curr) == FALSE)
-			ft_printf("FALSE");
+			l_printf("FALSE");
 		else
-			ft_printf("TRUE");
+			l_printf("TRUE");
 	}
 	else if (arg == 2)
 	{
@@ -56,9 +56,9 @@ int		main(int argc, char **argv)
 		char *prev = "101110010110011";
 		char *curr = "10111001N1010110011";
 		if (curr_line_len_isok(prev, curr) == FALSE)
-			ft_printf("FALSE");
+			l_printf("FALSE");
 		else
-			ft_printf("TRUE");
+			l_printf("TRUE");
 	}
 	else if (arg == 3)
 	{
@@ -66,9 +66,9 @@ int		main(int argc, char **argv)
 		char *prev = "10111100101100011";
 		char *curr = "10111001N1010110011";
 		if (curr_line_len_isok(prev, curr) == FALSE)
-			ft_printf("FALSE");
+			l_printf("FALSE");
 		else
-			ft_printf("TRUE");
+			l_printf("TRUE");
 	}
 	else if (arg == 4)
 	{
@@ -76,9 +76,9 @@ int		main(int argc, char **argv)
 		char *prev = "101110010110001111111111";
 		char *curr = "10111001N1010110011";
 		if (curr_line_len_isok(prev, curr) == FALSE)
-			ft_printf("FALSE");
+			l_printf("FALSE");
 		else
-			ft_printf("TRUE");
+			l_printf("TRUE");
 	}
 	else if (arg == 5)
 	{
@@ -86,9 +86,9 @@ int		main(int argc, char **argv)
 		char *prev = "10111001N1010110011";
 		char *curr = "101110010110011";
 		if (curr_line_len_isok(prev, curr) == FALSE)
-			ft_printf("FALSE");
+			l_printf("FALSE");
 		else
-			ft_printf("TRUE");
+			l_printf("TRUE");
 	}
 	return (0);
 }

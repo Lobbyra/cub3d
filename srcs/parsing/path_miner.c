@@ -6,13 +6,13 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:54:18 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/09 12:14:30 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/24 09:30:04 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "l_libc.h"
 
-char	*header_miner_paths(char *raw_paths)
+char	*path_miner(char *raw_paths)
 {
 	char	*new;
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   8_get_file.c                                       :+:      :+:    :+:   */
+/*   18_get_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 11:09:14 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/22 09:45:45 by jecaudal         ###   ########.fr       */
+/*   Created: 2020/01/24 10:08:54 by jecaudal          #+#    #+#             */
+/*   Updated: 2020/01/24 11:05:33 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,40 @@
 
 int		main(int argc, char **argv)
 {
-	int	arg;
-	t_file *file;
+	int		arg;
+	t_file	*file;
+	t_info	*info;
 
 	if (argc < 2)
-		return (0);
+	return (0);
 	arg = atoi(argv[1]);
-	file = init_file();
 	if (arg == 1)
 	{
-		get_file(file, "test_files/_8_a_bad_line.cub");
+		/*Basic use case*/
+		file = init_file();
+		if (get_file(file, "test_files/parsing_example_files/2_correct.cub") == FAILURE)
+		{
+			free_file(file);
+			return (1);
+		}
+		info = get_info(file);
 		print_t_file(file);
 		free_file(file);
+		free_info(info);
 	}
 	else if (arg == 2)
 	{
-		get_file(file, "test_files/_8_correct_file.cub");
+		/*Advanced use case*/
+		file = init_file();
+		if (get_file(file, "test_files/parsing_example_files/1_correct_hard.cub") == FAILURE)
+		{
+			free_file(file);
+			return (1);
+		}
+		info = get_info(file);
 		print_t_file(file);
 		free_file(file);
-	}
-	else if (arg == 3)
-	{
-		get_file(file, "test_files/_8_good_but_missings.cub");
-		print_t_file(file);
-		free_file(file);
-	}
-	else if (arg == 4)
-	{
-		get_file(file, "test_files/_8_wrong_ext.ceb");
-		print_t_file(file);
-		free_file(file);
-	}
-	else if (arg == 5)
-	{
-		get_file(file, "test_files/_8_does_not_exist.cub");
-		print_t_file(file);
-		free_file(file);
+		free_info(info);
 	}
 	return (0);
-}
-
-void __attribute__((destructor)) f()
-{
-	getchar();
-	{}
 }

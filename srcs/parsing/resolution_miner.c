@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header_miner_color.c                               :+:      :+:    :+:   */
+/*   resolution_miner.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 10:20:44 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/09 10:32:00 by jecaudal         ###   ########.fr       */
+/*   Created: 2020/01/09 13:12:10 by jecaudal          #+#    #+#             */
+/*   Updated: 2020/02/08 14:09:37 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-** Format of rgbs : 251,68,54 as r,g,b
+** Res[0] -> x
+** Res[1] -> y
 */
 
-int	header_miner_color(char *rgb)
+int	*resolution_miner(char *raw_res)
 {
-	int		color;
-	char	**colors;
+	int *resolution;
 
-	colors = l_split(rgb, ",");
-	color = l_atoi(colors[0]);
-	color = (color << 8) + l_atoi(colors[1]);
-	color = (color << 8) + l_atoi(colors[2]);
-	l_freestrs(colors);
-	return (color);
+	if (!raw_res)
+		return (NULL);
+	if (!(resolution = (int*)malloc(sizeof(int) * 2)))
+		return (NULL);
+	raw_res += 2;
+	resolution[0] = l_atoi(raw_res);
+	while (l_isspace(*raw_res) == TRUE)
+		raw_res++;
+	while (l_isnum(*raw_res) == TRUE)
+		raw_res++;
+	raw_res++;
+	resolution[1] = l_atoi(raw_res);
+	return (resolution);
 }

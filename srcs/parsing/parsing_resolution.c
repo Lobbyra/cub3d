@@ -6,20 +6,20 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 10:58:47 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/01/20 13:12:07 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/01/21 11:03:36 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static t_bool	print_resolution_error(t_err err, int curr_line)
+static t_bool	print_resolution_error(t_err err)
 {
 	if (err == ERR_RESOLUTION_FORMAT)
-		ft_printf("[RES ERROR] Line %d : %s", curr_line, ERR_MSG_RES_FORMAT);
+		l_printf("[RES ERROR] : %s", ERR_MSG_RES_FORMAT);
 	else if (err == ERR_RESOLUTION_VAL_X)
-		ft_printf("[RES ERROR] Line %d : %s", curr_line, ERR_MSG_RES_VALUE_X);
+		l_printf("[RES ERROR] : %s", ERR_MSG_RES_VALUE_X);
 	else if (err == ERR_RESOLUTION_VAL_Y)
-		ft_printf("[RES ERROR] Line %d : %s", curr_line, ERR_MSG_RES_VALUE_Y);
+		l_printf("[RES ERROR] : %s", ERR_MSG_RES_VALUE_Y);
 	return (FALSE);
 }
 
@@ -45,13 +45,13 @@ t_bool			parsing_resolution_format(char *resolution)
 	return (FALSE);
 }
 
-t_bool			parsing_resolution(char *resolution, int curr_line)
+t_bool			parsing_resolution(char *resolution)
 {
 	int x;
 	int y;
 
 	if (parsing_resolution_format(resolution) == FALSE)
-		return (print_resolution_error(ERR_RESOLUTION_FORMAT, curr_line));
+		return (print_resolution_error(ERR_RESOLUTION_FORMAT));
 	resolution += 2;
 	x = l_atoi(resolution);
 	while (l_isnum(*resolution) == TRUE || *resolution == '-')
@@ -59,8 +59,8 @@ t_bool			parsing_resolution(char *resolution, int curr_line)
 	resolution += 1;
 	y = l_atoi(resolution);
 	if (x <= 0)
-		return (print_resolution_error(ERR_RESOLUTION_VAL_X, curr_line));
+		return (print_resolution_error(ERR_RESOLUTION_VAL_X));
 	else if (y <= 0)
-		return (print_resolution_error(ERR_RESOLUTION_VAL_Y, curr_line));
+		return (print_resolution_error(ERR_RESOLUTION_VAL_Y));
 	return (TRUE);
 }
