@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/02/10 15:42:49 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/12 17:07:12 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,26 @@
 ** ### Options ###
 */
 
-# define MOVE_SPEED 1.1
-# define ROTATION_SPEED 1.1
 # define CUB_FOV 66
-# define CUB_RSPEED 2
-# define CUB_MSPEED 2
+# define CUB_RSPEED 0.06
+# define CUB_MSPEED 0.06
 # define BUFFER_SIZE 100
+# define CUB_BPP 32
 
 # define WIDTH_SCREEN 2560
 # define HEIGHT_SCREEN 1440
+
+/*
+** Colors
+*/
+
+# define HORIZONTAL 0
+# define VERTICAL 1
+# define COLOR_W 16777215
+# define COLOR_NORTH 12727830
+# define COLOR_SOUTH 38886
+# define COLOR_EAST 4504882
+# define COLOR_WEST 16500017
 
 /*
 ** Line type sig
@@ -116,108 +127,109 @@
 ** KEYS
 */
 
-#define KEY_Z 13
-#define KEY_S 1
-#define KEY_Q 0
-#define KEY_D 2
-#define KEY_ESCAPE 53
+# define KEY_Z 13
+# define KEY_S 1
+# define KEY_Q 0
+# define KEY_D 2
+# define KEY_ALT 261
+# define KEY_ESCAPE 53
+# define KEY_ESCAPE 53
+# define KEY_ARRR 124
+# define KEY_ARRL 123
 
-#define KEY_UP 1
-#define KEY_DOWN 2
-#define KEY_RIGHT 4
-#define KEY_LEFT 8
-#define KEY_DEBUG 16
+# define KEY_UP 1
+# define KEY_DOWN 2
+# define KEY_RIGHT 4
+# define KEY_LEFT 8
+# define KEY_DEBUG 16
+# define KEY_ROTR 32
+# define KEY_ROTL 64
 
 typedef int t_err;
 typedef int t_sig;
 
 
-typedef struct 		s_file
+typedef struct 	s_file
 {
-	int				fd;
-	char			*raw_res;
-	char			*raw_n_path;
-	char			*raw_s_path;
-	char			*raw_e_path;
-	char			*raw_w_path;
-	char			*raw_sprite_path;
-	char			*raw_floor_color;
-	char			*raw_ceiling_color;
-	char			*raw_map;
-	int				curr_line;
-}					t_file;
+	int			fd;
+	char		*raw_res;
+	char		*raw_n_path;
+	char		*raw_s_path;
+	char		*raw_e_path;
+	char		*raw_w_path;
+	char		*raw_sprite_path;
+	char		*raw_floor_color;
+	char		*raw_ceiling_color;
+	char		*raw_map;
+	int			curr_line;
+}				t_file;
 
-typedef struct 		s_info
+typedef struct 	s_info
 {
-	int				res_x;
-	int				res_y;
-	char			*n_path;
-	char			*s_path;
-	char			*e_path;
-	char			*w_path;
-	char			*sprite_path;
-	int				floor_color;
-	int				ceiling_color;
-	char			**map;
-	char			player_orientation;
-}					t_info;
+	int			res_x;
+	int			res_y;
+	char		*n_path;
+	char		*s_path;
+	char		*e_path;
+	char		*w_path;
+	char		*sprite_path;
+	int			floor_color;
+	int			ceiling_color;
+	char		**map;
+	char		player_orientation;
+}				t_info;
 
-typedef struct		s_stock
+typedef struct	s_img
 {
-	int				w;
-	int				h;
-	int				fov;
-	char			**map;
-	char			*n_path;
-	char			*s_path;
-	char			*e_path;
-	char			*w_path;
-	void			*mlx_ptr;
-	void			*win_ptr;
-	void			*img_ptr;
-	int				move_speed;
-	int				floor_color;
-	char			*sprite_path;
-	int				ceiling_color;
-	int				rotation_speed;
+	int			width;
+	int			height;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+}				t_img;
 
-	double			posx;
-	double			posy;
-	double			dirx;
-	double			diry;
-	double			planex;
-	double			planey;
-	double			camerax;
-	t_bool			is_debug;
-	int				key;
-
-	int				x;
-	int				stepx;
-	int				stepy;
-	double			raydirx;
-	double			raydiry;
-	double			deltadistx;
-	double			deltadisty;
-	double			perpwalldist;
-
-	double			sidedistx;
-	double			sidedisty;
-	int				mapx;
-	int				mapy;
-}					t_stock;
-/*
-** orientation is in degrese, 0 is oriented to east.
-** Is initialized accord to the data read on the map.
-*/
-typedef struct 	s_player
+typedef struct	s_stock
 {
+	int			w;
+	int			h;
 	int			fov;
-	float		pos_x;
-	float		pos_y;
-	float		orientation;
-	float		move_speed;
-	float		rotation_speed;
-}				t_player;
+	t_img		*img;
+	char		**map;
+	char		*n_path;
+	char		*s_path;
+	char		*e_path;
+	char		*w_path;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	double		movspeed;
+	int			floor_color;
+	char		*sprite_path;
+	int			ceiling_color;
+	double		rotspeed;
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
+	double		camerax;
+	t_bool		is_debug;
+	int			key;
+	int			x;
+	int			stepx;
+	int			stepy;
+	double		raydirx;
+	double		raydiry;
+	double		deltadistx;
+	double		deltadisty;
+	double		perpwalldist;
+	int			side;
+	int			mapx;
+	int			mapy;
+	double		sidedistx;
+	double		sidedisty;
+	char		side_hited;
+}				t_stock;
 
 /*
 ** ### Debug Declarations ###
@@ -272,13 +284,31 @@ t_info	*get_info(t_file *file);
 ** Stock
 */
 
-t_stock		*init_stock(t_info *info);
-void		free_stock(t_stock *stock);
-int			key_pressed(int keycode, void *param);
-int			key_released(int keycode, void *param);
-int			cub_exit(void *param);
-void		raycasting(t_stock *stock);
+int		cub_exit(void *param);
+t_stock	*init_stock(t_info *info);
+double	init_stock_find_dirx(char player_orientation);
+double	init_stock_find_diry(char player_orientation);
+double	init_stock_find_planex(char player_orientation);
+double	init_stock_find_planey(char player_orientation);
+void	free_stock(t_stock *stock);
+void	raycasting(t_stock *stock);
+void	print_t_stock(t_stock *stock);
+int		key_pressed(int keycode, void *param);
+int		key_released(int keycode, void *param);
 
+/*
+** Render
+*/
+
+int		render(void *param);
+void	lmlx_push_img(t_img *img);
+void	player_update(t_stock *s);
+void	lmlx_destroy_image(t_img *img);
+void	perform_raycasting(t_stock *stock);
+void	lmlx_pixel_put(t_img *img, int rgb, int x, int y);
+void	draw_vert_line(t_stock *stock, int y_start, int y_end);
+char	cub_side_hited(double raydirx, double raydiry, int side);
+t_img	*lmlx_new_image(void *mlx_ptr, void *win_ptr, int width, int height);
 
 
 #endif

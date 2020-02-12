@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:00:08 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/10 15:11:48 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:32:27 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ static int	isk_find_x_player(char **map)
 	return (temp - *map);
 }
 
-static void	isk_default(t_stock *stock)
+static void	isk_default(t_stock *stock, char player_orientation)
 {
 	stock->posx = isk_find_x_player(stock->map);
 	stock->posy = isk_find_y_player(stock->map);
-	stock->dirx = 0;
-	stock->diry = 0;
-	stock->planex = 0;
-	stock->planey = 0;
+	stock->dirx = init_stock_find_dirx(player_orientation);
+	stock->diry = init_stock_find_diry(player_orientation);
+	stock->planex = init_stock_find_planex(player_orientation);
+	stock->planey = init_stock_find_planey(player_orientation);
 	stock->camerax = 0;
 	stock->is_debug = 0;
 	stock->key = 0;
@@ -67,11 +67,11 @@ static void	isk_default(t_stock *stock)
 	stock->perpwalldist = 0;
 	stock->sidedistx = 0;
 	stock->sidedisty = 0;
-	stock->mapx = 0;
-	stock->mapy = 0;
+	stock->mapx = (int)stock->posx;
+	stock->mapy = (int)stock->posy;
 	stock->fov = CUB_FOV;
-	stock->move_speed = CUB_MSPEED;
-	stock->rotation_speed = CUB_RSPEED;
+	stock->movspeed = CUB_MSPEED;
+	stock->rotspeed = CUB_RSPEED;
 }
 
 static void	isk_infocpy(t_info *info, t_stock *stock)
@@ -95,11 +95,12 @@ t_stock		*init_stock(t_info *info)
 	if (!(stock = (t_stock*)malloc(sizeof(t_stock))))
 	return (NULL);
 	isk_infocpy(info, stock);
-	isk_default(stock);
+	isk_default(stock, info->player_orientation);
 	stock->map[(int)stock->posy][(int)stock->posx] = '0';
-	if (stock->w > WIDTH_SCREEN)
+	if (stock->w > WIDTH_SCREEN || stock->h > HEIGHT_SCREEN)
+	{
 		stock->w = 2560;
-	if (stock->h > HEIGHT_SCREEN)
 		stock->h = 1440;
+	}
 	return (stock);
 }

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_exit.c                                         :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 15:28:03 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/12 11:44:36 by jecaudal         ###   ########.fr       */
+/*   Created: 2020/02/10 15:04:21 by jecaudal          #+#    #+#             */
+/*   Updated: 2020/02/11 11:32:19 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		cub_exit(void *param)
+void	raycasting(t_stock *stock)
 {
-	t_stock *stock;
-
-	stock = (t_stock*)param;
-	mlx_destroy_window(stock->mlx_ptr, stock->win_ptr);
-	free_stock(stock);
-	exit(0);
-	return (0);
+	mlx_hook(stock->win_ptr, 2, 0, &key_pressed, stock);
+	mlx_hook(stock->win_ptr, 3, 0, &key_released, stock);
+	mlx_hook(stock->win_ptr, 17, 0, &cub_exit, stock);
+	mlx_loop_hook(stock->mlx_ptr, &render, stock);
+	mlx_loop(stock->mlx_ptr);
 }

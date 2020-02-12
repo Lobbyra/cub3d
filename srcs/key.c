@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:06:42 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/10 15:42:21 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/12 11:44:15 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,14 @@ int		key_pressed(int keycode, void *param)
 		stock->key |= KEY_LEFT;
 	else if (keycode == KEY_D)
 		stock->key |= KEY_RIGHT;
+	else if (keycode == KEY_ARRL)
+		stock->key |= KEY_ROTL;
+	else if (keycode == KEY_ARRR)
+		stock->key |= KEY_ROTR;
+	else if (keycode == KEY_ALT)
+		stock->key ^= KEY_DEBUG;
 	else if (keycode == KEY_ESCAPE)
 		cub_exit(stock);
-	l_printf("stock->key = %d\n", stock->key);
 	return (1);
 }
 
@@ -44,6 +49,9 @@ int		key_released(int keycode, void *param)
 		stock->key &= ~KEY_LEFT;
 	else if (keycode == KEY_D)
 		stock->key &= ~KEY_RIGHT;
-	l_printf("stock->key = %d\n", stock->key);
+	else if (keycode == KEY_ARRL)
+		stock->key &= ~KEY_ROTL;
+	else if (keycode == KEY_ARRR)
+		stock->key &= ~KEY_ROTR;
 	return (1);
 }
