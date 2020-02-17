@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 13:42:41 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/12 11:25:01 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/17 12:53:28 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double	init_stock_find_diry(char player_orientation)
 	return (0);
 }
 
-double	init_stock_find_planex(char player_orientation)
+double	init_stock_find_planx(char player_orientation)
 {
 	if (player_orientation == 'N')
 		return (0.66);
@@ -44,7 +44,8 @@ double	init_stock_find_planex(char player_orientation)
 		return (0);
 	return (0);
 }
-double	init_stock_find_planey(char player_orientation)
+
+double	init_stock_find_plany(char player_orientation)
 {
 	if (player_orientation == 'N' || player_orientation == 'S')
 		return (0);

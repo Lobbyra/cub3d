@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 09:50:28 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/11 13:10:06 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/17 11:59:30 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	panic_window(t_stock *stock)
 	return (1);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	void	*win_ptr;
 	void	*mlx_ptr;

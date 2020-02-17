@@ -6,52 +6,49 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 11:02:44 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/12 17:09:24 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/17 12:03:03 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	side_hited_between(double raydirx, double raydiry, int side)
+static int	side_hited_between(double raydiry, int side)
 {
-	if (raydirx > 0 && raydirx < 1 && raydiry > -1 && raydiry < 0) //NE
-	{
-		if (side == VERTICAL)
-			return ('W');
-		return ('S');
-	}
-	else if (raydirx > -1 && raydirx < 0 && raydiry > -1 && raydiry < 0) //NW
+	if (raydiry < 0)
 	{
 		if (side == VERTICAL)
 			return ('E');
-		return ('S');
+		else
+			return ('S');
 	}
-	else if (raydirx > 0 && raydirx < 1 && raydiry > 0 && raydiry < 1) //SE
-	{
-		if (side == VERTICAL)
-			return ('W');
-		return ('N');
-	}
-	else if (raydirx > -1 && raydirx < 0 && raydiry > 0 && raydiry < 1) //SW
+	else
 	{
 		if (side == VERTICAL)
 			return ('E');
-		return ('N');
+		else
+			return ('N');
 	}
-	return ('N');
+	return ('Z');
 }
 
 char		cub_side_hited(double raydirx, double raydiry, int side)
 {
-	if (raydirx == 1 && raydiry == 0)
-		return ('E');
-	else if (raydirx == -1 && raydiry == 0)
-		return ('W');
-	else if (raydirx == 0 && raydiry == 1)
-		return ('S');
-	else if (raydirx == 0 && raydiry == -1)
-		return ('N');
-	else
-		return (side_hited_between(raydirx, raydiry, side));
-	return ('N');
+	if (raydirx > 0)
+	{
+		if (raydiry < 0)
+		{
+			if (side == VERTICAL)
+				return ('W');
+			else
+				return ('S');
+		}
+		else
+		{
+			if (side == VERTICAL)
+				return ('W');
+			else
+				return ('N');
+		}
+	}
+	return (side_hited_between(raydiry, side));
 }

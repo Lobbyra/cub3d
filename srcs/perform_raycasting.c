@@ -6,16 +6,13 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:40:58 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/12 17:03:11 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/17 11:58:51 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-** Will compute wall height and draw it. I will maybe have to split this fun.
-*/
-static void draw_wall(t_stock *stock)
+static void	draw_wall(t_stock *stock)
 {
 	int drawend;
 	int drawstart;
@@ -31,9 +28,6 @@ static void draw_wall(t_stock *stock)
 	draw_vert_line(stock, drawstart, drawend);
 }
 
-/*
-** Will throw the ray through the map to get player-wall distance.
-*/
 static void	throwing(t_stock *s)
 {
 	t_bool	is_hit;
@@ -61,17 +55,13 @@ static void	throwing(t_stock *s)
 	else
 		s->perpwalldist = (s->mapy - s->posy + (1 - s->stepy) / 2) / s->raydiry;
 	s->side_hited = cub_side_hited(s->raydirx, s->raydiry, s->side);
-
 }
 
-/*
-** Will setup the ray direction and vertical/horizontal jump lenght.
-*/
 static void	setup_ray(t_stock *s)
 {
 	s->camerax = 2 * s->x / (double)(s->w) - 1;
-	s->raydirx = s->dirx + s->planex * s->camerax;
-	s->raydiry = s->diry + s->planey * s->camerax;
+	s->raydirx = s->dirx + s->planx * s->camerax;
+	s->raydiry = s->diry + s->plany * s->camerax;
 	s->deltadistx = fabs(1 / s->raydirx);
 	s->deltadisty = fabs(1 / s->raydiry);
 	if (s->raydirx < 0)
@@ -96,9 +86,6 @@ static void	setup_ray(t_stock *s)
 	}
 }
 
-/*
-** Will draw wall in image.
-*/
 void		perform_raycasting(t_stock *stock)
 {
 	while (stock->x < stock->w)

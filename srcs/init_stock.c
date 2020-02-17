@@ -6,13 +6,13 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:00:08 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/11 15:32:27 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:05:29 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	isk_find_y_player(char **map)
+static double	isk_find_y_player(char **map)
 {
 	char	*temp;
 	char	**save_map;
@@ -27,10 +27,10 @@ static int	isk_find_y_player(char **map)
 			break ;
 		map++;
 	}
-	return (map - save_map);
+	return (map - save_map + 0.5);
 }
 
-static int	isk_find_x_player(char **map)
+static double	isk_find_x_player(char **map)
 {
 	char	*temp;
 
@@ -43,20 +43,20 @@ static int	isk_find_x_player(char **map)
 			break ;
 		map++;
 	}
-	return (temp - *map);
+	return (temp - *map + 0.5);
 }
 
-static void	isk_default(t_stock *stock, char player_orientation)
+static void		isk_default(t_stock *stock, char player_orientation)
 {
 	stock->posx = isk_find_x_player(stock->map);
 	stock->posy = isk_find_y_player(stock->map);
 	stock->dirx = init_stock_find_dirx(player_orientation);
 	stock->diry = init_stock_find_diry(player_orientation);
-	stock->planex = init_stock_find_planex(player_orientation);
-	stock->planey = init_stock_find_planey(player_orientation);
+	stock->planx = init_stock_find_planx(player_orientation);
+	stock->plany = init_stock_find_plany(player_orientation);
 	stock->camerax = 0;
 	stock->is_debug = 0;
-	stock->key = 0;
+	stock->key = -1;
 	stock->x = 0;
 	stock->stepx = 0;
 	stock->stepy = 0;
@@ -69,12 +69,11 @@ static void	isk_default(t_stock *stock, char player_orientation)
 	stock->sidedisty = 0;
 	stock->mapx = (int)stock->posx;
 	stock->mapy = (int)stock->posy;
-	stock->fov = CUB_FOV;
 	stock->movspeed = CUB_MSPEED;
 	stock->rotspeed = CUB_RSPEED;
 }
 
-static void	isk_infocpy(t_info *info, t_stock *stock)
+static void		isk_infocpy(t_info *info, t_stock *stock)
 {
 	stock->w = info->res_x;
 	stock->h = info->res_y;
@@ -88,12 +87,12 @@ static void	isk_infocpy(t_info *info, t_stock *stock)
 	stock->map = l_strsdup(info->map);
 }
 
-t_stock		*init_stock(t_info *info)
+t_stock			*init_stock(t_info *info)
 {
 	t_stock *stock;
 
 	if (!(stock = (t_stock*)malloc(sizeof(t_stock))))
-	return (NULL);
+		return (NULL);
 	isk_infocpy(info, stock);
 	isk_default(stock, info->player_orientation);
 	stock->map[(int)stock->posy][(int)stock->posx] = '0';
