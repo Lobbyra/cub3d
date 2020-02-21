@@ -6,11 +6,16 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 09:53:01 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/17 11:59:06 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:33:41 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+** 	texture_test = mlx_xpm_file_to_image(stock->mlx_ptr, "stone.xpm", &w, &h);
+**	mlx_put_image_to_window(stock->mlx_ptr, stock->win_ptr, texture_test, 0, 0);
+*/
 
 static void	print_img_err(t_stock *stock)
 {

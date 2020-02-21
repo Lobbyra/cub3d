@@ -6,11 +6,17 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:40:58 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/17 11:58:51 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:57:05 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+** The code below is a protection when the wall is too much high.
+**  if (lineheight > WALL_HEIGHT_PROTECTION)
+**		lineheight = WALL_HEIGHT_PROTECTION;
+*/
 
 static void	draw_wall(t_stock *stock)
 {
@@ -19,13 +25,18 @@ static void	draw_wall(t_stock *stock)
 	int lineheight;
 
 	lineheight = (int)(stock->h / stock->perpwalldist);
+	if (lineheight > WALL_HEIGHT_PROTECTION)
+		lineheight = WALL_HEIGHT_PROTECTION;
 	drawstart = -lineheight / 2 + stock->h / 2;
 	if (drawstart < 0)
 		drawstart = 0;
 	drawend = lineheight / 2 + stock->h / 2;
 	if (drawend >= stock->h)
 		drawend = stock->h - 1;
-	draw_vert_line(stock, drawstart, drawend);
+	if (stock->key & KEY_DEBUG)
+		draw_vert_line(stock, drawstart, drawend);
+	else
+		draw_line_text(stock, drawstart, drawend, lineheight);
 }
 
 static void	throwing(t_stock *s)

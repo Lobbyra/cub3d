@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/02/17 13:10:02 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:57:02 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@
 # define CUB_RSPEED 0.06
 # define CUB_MSPEED 0.06
 # define BUFFER_SIZE 100
-# define CUB_BPP 32
 
 # define WIDTH_SCREEN 2560
 # define HEIGHT_SCREEN 1440
+# define WALL_HEIGHT_PROTECTION 200000
 
 /*
 ** Colors
@@ -205,5 +205,8 @@ void			draw_vert_line(t_stock *stock, int y_start, int y_end);
 char			cub_side_hited(double raydirx, double raydiry, int side);
 t_img			*lmlx_new_image(void *mlx_ptr, void *win_ptr, int w, int h);
 void			draw_background(t_img *img, int color_ceiling, int color_floor);
+void			init_stock_xpm(t_stock *stock);
+t_img			*lmlx_xpm_to_img(void *mlx_ptr, char *path);
+void			draw_line_text(t_stock *s, int start, int end, int lineheight);
 
 #endif

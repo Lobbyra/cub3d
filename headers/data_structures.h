@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:58:31 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/17 13:10:38 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:43:04 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ typedef struct	s_stock
 	int			w;
 	int			h;
 	t_img		*img;
+	t_img		*text_n;
+	t_img		*text_s;
+	t_img		*text_e;
+	t_img		*text_w;
 	char		**map;
 	char		*n_path;
 	char		*s_path;

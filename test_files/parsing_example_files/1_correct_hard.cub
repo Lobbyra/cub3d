@@ -3,15 +3,11 @@ R 1920 1080
 
 
 
-NO Makefile
+NO brick.xpm
 
 
 
-SO Makefile
-
-
-
-
+SO dirt.xpm
 
 
 
@@ -20,11 +16,15 @@ SO Makefile
 
 
 
-EA Makefile
-WE Makefile
 
 
-S Makefile
+
+
+EA stone.xpm
+WE wood.xpm
+
+
+S sanic.xpm
 
 C 106,176,76
 

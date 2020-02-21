@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 10:23:06 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/17 12:01:31 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:44:24 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static int	color_picker(char side_hited)
 		return (COLOR_EAST);
 	else if (side_hited == 'W')
 		return (COLOR_WEST);
-	else if (side_hited == 'Z')
-		return (COLOR_ERR);
 	return (0);
 }
 

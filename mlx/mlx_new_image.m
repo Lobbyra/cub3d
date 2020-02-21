@@ -143,7 +143,7 @@ int mlx_string_put(mlx_ptr_t *mlx_ptr, mlx_win_list_t *win_ptr, int x, int y, in
     }
 
   win_ptr->nb_flush ++;
-  
+
   return (0);
 }
 
