@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 09:17:36 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/08 15:03:27 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:35:48 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ t_info			*get_info(t_file *file)
 		return (NULL);
 	if (!(info->sprite_path = path_miner(file->raw_sprite_path)))
 		return (NULL);
-	info->floor_color = color_miner(file->raw_floor_color);
-	info->ceiling_color = color_miner(file->raw_ceiling_color);
+	info->floor_color = color_miner(file->raw_floor_color + 2);
+	info->ceiling_color = color_miner(file->raw_ceiling_color + 2);
 	if (!(info->map = l_split(file->raw_map, "\n")))
 		return (NULL);
 	info->player_orientation = get_player(info->map);

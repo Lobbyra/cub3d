@@ -6,12 +6,30 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:58:31 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/18 13:43:04 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 16:44:32 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_STRUCTURES_H
 # define DATA_STRUCTURES_H
+
+typedef struct	s_coord
+{
+	double		x;
+	double		y;
+}				t_coord;
+
+typedef struct	s_sprite
+{
+	double		transformy;
+	int			spritescreenx;
+	int			spritew;
+	int			spriteh;
+	int			drawstartx;
+	int			drawendx;
+	int			drawstarty;
+	int			drawendy;
+}				t_sprite;
 
 typedef struct	s_file
 {
@@ -62,6 +80,7 @@ typedef struct	s_stock
 	t_img		*text_s;
 	t_img		*text_e;
 	t_img		*text_w;
+	t_img		*text_sp;
 	char		**map;
 	char		*n_path;
 	char		*s_path;
@@ -69,11 +88,14 @@ typedef struct	s_stock
 	char		*w_path;
 	void		*mlx_ptr;
 	void		*win_ptr;
-	double		movspeed;
+	double		mspeed;
 	int			floor_color;
 	char		*sprite_path;
+	int			n_sprites;
+	t_coord		*sprites_coords;
+	double		*zbuffer;
 	int			ceiling_color;
-	double		rotspeed;
+	double		rspeed;
 	double		posx;
 	double		posy;
 	double		dirx;

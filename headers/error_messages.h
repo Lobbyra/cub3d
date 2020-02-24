@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:56:27 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/17 13:03:11 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:54:31 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,14 @@
 # define ERR_MSG_MAP_HOLE "Your map is not surrounded by walls.\n"
 # define ERR_MSG_MAP_PLAY404 "Player not found."
 # define ERR_MSG_MAP_PLAYDUP "Your map contain two players or more.\n"
+
+/*
+** XPM err messages
+*/
+# define ERR_XPM_MSG_NORTH "Your North image are not correct.\n"
+# define ERR_XPM_MSG_SOUTH "Your South image are not correct.\n"
+# define ERR_XPM_MSG_EAST "Your East image are not correct.\n"
+# define ERR_XPM_MSG_WEST "Your West image are not correct.\n"
+# define ERR_XPM_MSG_SPRITE "Your Sprite image are not correct.\n"
 
 #endif

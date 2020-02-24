@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 13:42:41 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/18 15:00:23 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:44:22 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	init_stock_xpm(t_stock *stock)
 		stock->text_e = NULL;
 	if (!(stock->text_w = lmlx_xpm_to_img(stock->mlx_ptr, stock->w_path)))
 		stock->text_w = NULL;
+	if (!(stock->text_sp = lmlx_xpm_to_img(stock->mlx_ptr, stock->sprite_path)))
+		stock->text_sp = NULL;
 }
 
 double	init_stock_find_dirx(char player_orientation)

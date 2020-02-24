@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:40:58 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/21 11:57:05 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/22 11:35:35 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void		perform_raycasting(t_stock *stock)
 	{
 		setup_ray(stock);
 		throwing(stock);
+		if (!(stock->key & KEY_DEBUG_SPRITE))
+			stock->zbuffer[stock->x] = stock->perpwalldist;
 		draw_wall(stock);
 		stock->x++;
 		stock->mapx = (int)stock->posx;

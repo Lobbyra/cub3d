@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 11:47:09 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/19 16:16:44 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 10:38:22 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 
 static void	strafe(t_stock *s)
 {
-	char	**map;
+	double	temp;
 
-	map = s->map;
 	if (s->key & KEY_RIGHT)
 	{
-		if (map[(int)(s->posy)][(int)(s->posx + s->planx * s->movspeed)] != '1')
-			s->posx += s->planx * s->movspeed;
-		if (map[(int)(s->posy + s->plany * s->movspeed)][(int)(s->posx)] != '1')
-			s->posy += s->plany * s->movspeed;
+		temp = s->posx + (s->planx * s->mspeed);
+		if (l_c_finder(s->map[(int)(s->posy)][(int)(temp)], "12") == FALSE)
+			s->posx += s->planx * s->mspeed;
+		temp = s->posy + (s->plany * s->mspeed);
+		if (l_c_finder(s->map[(int)(temp)][(int)(s->posx)], "12") == FALSE)
+			s->posy += s->plany * s->mspeed;
 	}
 	else if (s->key & KEY_LEFT)
 	{
-		if (map[(int)(s->posy)][(int)(s->posx - s->planx * s->movspeed)] != '1')
-			s->posx -= s->planx * s->movspeed;
-		if (map[(int)(s->posy - s->plany * s->movspeed)][(int)(s->posx)] != '1')
-			s->posy -= s->plany * s->movspeed;
+		temp = s->posx - (s->planx * s->mspeed);
+		if (l_c_finder(s->map[(int)(s->posy)][(int)(temp)], "12") == FALSE)
+			s->posx -= s->planx * s->mspeed;
+		temp = s->posy - (s->plany * s->mspeed);
+		if (l_c_finder(s->map[(int)(temp)][(int)(s->posx)], "12") == FALSE)
+			s->posy -= s->plany * s->mspeed;
 	}
 }
 
@@ -42,40 +45,43 @@ static void	rotation(t_stock *s)
 	oldplanx = s->planx;
 	if (s->key & KEY_ROTL)
 	{
-		s->dirx = s->dirx * cos(-s->rotspeed) - s->diry * sin(-s->rotspeed);
-		s->diry = olddirx * sin(-s->rotspeed) + s->diry * cos(-s->rotspeed);
-		s->planx = s->planx * cos(-s->rotspeed) - s->plany * sin(-s->rotspeed);
-		s->plany = oldplanx * sin(-s->rotspeed) + s->plany * cos(-s->rotspeed);
+		s->dirx = s->dirx * cos(-s->rspeed) - s->diry * sin(-s->rspeed);
+		s->diry = olddirx * sin(-s->rspeed) + s->diry * cos(-s->rspeed);
+		s->planx = s->planx * cos(-s->rspeed) - s->plany * sin(-s->rspeed);
+		s->plany = oldplanx * sin(-s->rspeed) + s->plany * cos(-s->rspeed);
 	}
 	else if (s->key & KEY_ROTR)
 	{
-		s->dirx = s->dirx * cos(s->rotspeed) - s->diry * sin(s->rotspeed);
-		s->diry = olddirx * sin(s->rotspeed) + s->diry * cos(s->rotspeed);
-		s->planx = s->planx * cos(s->rotspeed) - s->plany * sin(s->rotspeed);
-		s->plany = oldplanx * sin(s->rotspeed) + s->plany * cos(s->rotspeed);
+		s->dirx = s->dirx * cos(s->rspeed) - s->diry * sin(s->rspeed);
+		s->diry = olddirx * sin(s->rspeed) + s->diry * cos(s->rspeed);
+		s->planx = s->planx * cos(s->rspeed) - s->plany * sin(s->rspeed);
+		s->plany = oldplanx * sin(s->rspeed) + s->plany * cos(s->rspeed);
 	}
 }
 
 void		player_update(t_stock *s)
 {
-	char **map;
+	double temp;
 
-	map = s->map;
 	if (s->key == -1)
 		s->key = 0;
 	if (s->key & KEY_UP)
 	{
-		if (map[(int)(s->posy)][(int)(s->posx + s->dirx * s->movspeed)] != '1')
-			s->posx += s->dirx * s->movspeed;
-		if (map[(int)(s->posy + s->diry * s->movspeed)][(int)(s->posx)] != '1')
-			s->posy += s->diry * s->movspeed;
+		temp = s->posx + (s->dirx * s->mspeed);
+		if (l_c_finder(s->map[(int)(s->posy)][(int)(temp)], "12") == FALSE)
+			s->posx += s->dirx * s->mspeed;
+		temp = s->posy + (s->diry * s->mspeed);
+		if (l_c_finder(s->map[(int)(temp)][(int)(s->posx)], "12") == FALSE)
+			s->posy += s->diry * s->mspeed;
 	}
-	else if (s->key & KEY_DOWN)
+	if (s->key & KEY_DOWN)
 	{
-		if (map[(int)(s->posy)][(int)(s->posx - s->dirx * s->movspeed)] != '1')
-			s->posx -= s->dirx * s->movspeed;
-		if (map[(int)(s->posy - s->diry * s->movspeed)][(int)(s->posx)] != '1')
-			s->posy -= s->diry * s->movspeed;
+		temp = s->posx - (s->dirx * s->mspeed);
+		if (l_c_finder(s->map[(int)(s->posy)][(int)(temp)], "12") == FALSE)
+			s->posx = temp;
+		temp = s->posy - (s->diry * s->mspeed);
+		if (l_c_finder(s->map[(int)(temp)][(int)(s->posx)], "12") == FALSE)
+			s->posy = temp;
 	}
 	rotation(s);
 	strafe(s);

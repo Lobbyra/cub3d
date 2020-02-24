@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 09:53:01 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/21 11:33:41 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:56:22 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int			render(void *param)
 		print_img_err(stock);
 	draw_background(stock->img, stock->ceiling_color, stock->floor_color);
 	perform_raycasting(stock);
+	if (!(stock->key & KEY_DEBUG_SPRITE))
+		draw_sprites(stock);
 	lmlx_push_img(img);
 	lmlx_destroy_image(img);
 	return (0);

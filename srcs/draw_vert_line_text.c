@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 09:51:26 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/21 11:22:36 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:56:24 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	get_color(t_stock *s, float start, int lineheight)
 	if (s->side == 1 && s->raydiry < 0)
 		x_text = texture->width - x_text - 1;
 	color = start * 256 - s->h * 128 + lineheight * 128;
-    y_text = ((color * texture->height) / lineheight) / 256;
+	y_text = ((color * texture->height) / lineheight) / 256;
 	color = texture->data_ptr[(int)(y_text * texture->width + x_text)];
 	return (color);
 }

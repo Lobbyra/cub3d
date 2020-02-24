@@ -6,7 +6,7 @@
 #    By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 09:12:12 by Lobbyra           #+#    #+#              #
-#    Updated: 2020/02/21 10:13:22 by jecaudal         ###   ########.fr        #
+#    Updated: 2020/02/24 12:52:59 by jecaudal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,18 @@ SRCS		=	srcs/cub_exit.c						\
 				srcs/debug/print_t_info.c			\
 				srcs/debug/print_t_sig.c			\
 				srcs/debug/print_t_stock.c			\
+				srcs/debug/print_t_sprites_coords.c	\
 				srcs/draw_background.c				\
+				srcs/draw_sprites_utils.c			\
+				srcs/draw_sprites.c					\
 				srcs/draw_vert_line.c				\
 				srcs/draw_vert_line_text.c			\
 				srcs/free_stock.c					\
+				srcs/panic_init_stock.c				\
 				srcs/init_stock.c					\
 				srcs/init_stock_utils.c				\
+				srcs/init_stock_sprites.c			\
+				srcs/init_stock_checkers.c			\
 				srcs/key.c							\
 				srcs/lmlx.c							\
 				srcs/main.c							\
@@ -70,6 +76,9 @@ $(NAME)		:	$(OBJS)
 
 turbo		:	clean $(OBJS)
 				$(CC) -O3 $(MLX) $(LIB) $(OBJS)
+
+sanitize	:	$(OBJS)
+				$(CC) -fsanitize=address $(MLX) $(LIB) $(OBJS)
 
 clean		:
 				rm -f $(OBJS)

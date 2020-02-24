@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:06:42 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/12 11:44:15 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/21 15:23:49 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		key_pressed(int keycode, void *param)
 		stock->key |= KEY_ROTR;
 	else if (keycode == KEY_ALT)
 		stock->key ^= KEY_DEBUG;
+	else if (keycode == KEY_ALTGR)
+		stock->key ^= KEY_DEBUG_SPRITE;
 	else if (keycode == KEY_ESCAPE)
 		cub_exit(stock);
 	return (1);

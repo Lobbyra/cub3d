@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 09:50:28 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/19 14:57:16 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:54:22 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@ int			main(int argc, char **argv)
 	s->mlx_ptr = mlx_init();
 	if (!(win_ptr = mlx_new_window(s->mlx_ptr, s->w, s->h, "cub3d")))
 		return (panic_window(s));
-	init_stock_xpm(s);
 	s->win_ptr = win_ptr;
+	init_stock_xpm(s);
+	if (is_xpm_inited(s) == FALSE)
+		cub_exit(s);
+	if (init_stock_sprites(s) == 1)
+		cub_exit(s);
 	raycasting(s);
 	return (0);
 }

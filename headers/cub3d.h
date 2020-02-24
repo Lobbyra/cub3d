@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/02/21 11:57:02 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:57:49 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,15 @@
 # define ERR_RESOLUTION_VAL_Y 30
 
 /*
+** XPM err sig
+*/
+# define ERR_XPM_NORTH 1
+# define ERR_XPM_SOUTH 2
+# define ERR_XPM_EAST 3
+# define ERR_XPM_WEST 4
+# define ERR_XPM_SPRITE 5
+
+/*
 ** KEYS
 */
 
@@ -114,6 +123,7 @@
 # define KEY_Q 0
 # define KEY_D 2
 # define KEY_ALT 261
+# define KEY_ALTGR 262
 # define KEY_ESCAPE 53
 # define KEY_ESCAPE 53
 # define KEY_ARRR 124
@@ -126,6 +136,7 @@
 # define KEY_DEBUG 16
 # define KEY_ROTR 32
 # define KEY_ROTL 64
+# define KEY_DEBUG_SPRITE 128
 
 typedef int		t_err;
 typedef int		t_sig;
@@ -137,6 +148,7 @@ void			print_t_sig(t_sig sig);
 void			print_t_err(t_err err);
 void			print_t_file(t_file *file);
 void			print_t_info(t_info *info);
+void			print_t_sprites_coords(t_coord *coords, int n_coords);
 
 /*
 ** ### Parsing Declarations ###
@@ -186,11 +198,17 @@ double			init_stock_find_dirx(char player_orientation);
 double			init_stock_find_diry(char player_orientation);
 double			init_stock_find_planx(char player_orientation);
 double			init_stock_find_plany(char player_orientation);
+int				init_stock_sprites(t_stock *s);
 void			free_stock(t_stock *stock);
 void			raycasting(t_stock *stock);
+void			init_stock_xpm(t_stock *stock);
 void			print_t_stock(t_stock *stock);
 int				key_pressed(int keycode, void *param);
 int				key_released(int keycode, void *param);
+void			*panic_init_stock(t_stock *stock);
+t_bool			is_xpm_inited(t_stock *stock);
+t_bool			is_infocpy_inited(t_stock *stock);
+void			lmlx_free_t_img(t_img *img);
 
 /*
 ** Render
@@ -205,8 +223,9 @@ void			draw_vert_line(t_stock *stock, int y_start, int y_end);
 char			cub_side_hited(double raydirx, double raydiry, int side);
 t_img			*lmlx_new_image(void *mlx_ptr, void *win_ptr, int w, int h);
 void			draw_background(t_img *img, int color_ceiling, int color_floor);
-void			init_stock_xpm(t_stock *stock);
 t_img			*lmlx_xpm_to_img(void *mlx_ptr, char *path);
 void			draw_line_text(t_stock *s, int start, int end, int lineheight);
+void			draw_sprites(t_stock *stock);
+void			sort_sprites(t_stock *s);
 
 #endif

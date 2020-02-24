@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:00:08 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/19 15:00:22 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 12:55:54 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ static void		isk_default(t_stock *stock, char player_orientation)
 	stock->sidedisty = 0;
 	stock->mapx = (int)stock->posx;
 	stock->mapy = (int)stock->posy;
-	stock->movspeed = CUB_MSPEED;
-	stock->rotspeed = CUB_RSPEED;
+	stock->mspeed = CUB_MSPEED;
+	stock->rspeed = CUB_RSPEED;
+	if (!(stock->zbuffer = (double*)malloc(sizeof(double) * stock->w)))
+		stock->zbuffer = NULL;
 }
 
 static void		isk_infocpy(t_info *info, t_stock *stock)
@@ -94,6 +96,8 @@ t_stock			*init_stock(t_info *info)
 	if (!(stock = (t_stock*)malloc(sizeof(t_stock))))
 		return (NULL);
 	isk_infocpy(info, stock);
+	if (is_infocpy_inited(stock) == FALSE)
+		return (panic_init_stock(stock));
 	isk_default(stock, info->player_orientation);
 	stock->map[(int)stock->posy][(int)stock->posx] = '0';
 	if (stock->w > WIDTH_SCREEN || stock->h > HEIGHT_SCREEN)

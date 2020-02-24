@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_miner.c                                      :+:      :+:    :+:   */
+/*   print_t_sprites_coords.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 10:20:44 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/24 15:55:54 by jecaudal         ###   ########.fr       */
+/*   Created: 2020/02/21 14:16:35 by jecaudal          #+#    #+#             */
+/*   Updated: 2020/02/24 16:06:18 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	color_miner(char *rgb)
+void	print_t_sprites_coords(t_coord *coords, int n_coords)
 {
-	int		color;
-	char	**colors;
+	t_coord *temp;
 
-	colors = l_split(rgb, ",");
-	color = l_atoi(colors[0]);
-	color = (color << 8) + l_atoi(colors[1]);
-	color = (color << 8) + l_atoi(colors[2]);
-	l_freestrs(colors);
-	return (color);
+	temp = coords;
+	while (temp - coords < n_coords)
+	{
+		printf("[%d:x = %f;y = %f]\n", (int)(temp - coords), temp->x, temp->y);
+		temp++;
+	}
 }

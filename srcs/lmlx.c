@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 10:29:45 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/19 15:08:44 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:33:09 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@ void	lmlx_destroy_image(t_img *img)
 void	lmlx_push_img(t_img *img)
 {
 	mlx_put_image_to_window(img->mlx_ptr, img->win_ptr, img->img_ptr, 0, 0);
+}
+
+void	lmlx_free_t_img(t_img *img)
+{
+	if (img)
+	{
+		mlx_destroy_image(img->mlx_ptr, img->img_ptr);
+		free(img);
+	}
 }
 
 t_img	*lmlx_xpm_to_img(void *mlx_ptr, char *path)
