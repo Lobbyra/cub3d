@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/02/24 15:57:49 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:57:26 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,5 +227,12 @@ t_img			*lmlx_xpm_to_img(void *mlx_ptr, char *path);
 void			draw_line_text(t_stock *s, int start, int end, int lineheight);
 void			draw_sprites(t_stock *stock);
 void			sort_sprites(t_stock *s);
+
+/*
+** Save
+*/
+void			save_bmp(t_stock *stock);
+void			putint_fd(unsigned int n, int fd);
+void			putint_color_fd(unsigned int n, int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:58:31 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/24 16:44:32 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:33:53 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,21 @@ typedef struct	s_coord
 	double		x;
 	double		y;
 }				t_coord;
+
+typedef struct	s_bmp
+{
+	char		magic[3];
+	int			size_file;
+	int			app_spe;
+	int			data_offset;
+	int			size_dib;
+	int			w;
+	int			h;
+	short int	planes;
+	short int	bpp;
+	int			*data_ptr;
+	double		padding_trash;
+}				t_bmp;
 
 typedef struct	s_sprite
 {

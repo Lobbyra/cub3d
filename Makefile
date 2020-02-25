@@ -6,7 +6,7 @@
 #    By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 09:12:12 by Lobbyra           #+#    #+#              #
-#    Updated: 2020/02/24 12:52:59 by jecaudal         ###   ########.fr        #
+#    Updated: 2020/02/25 16:41:03 by jecaudal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS		=	srcs/cub_exit.c						\
 				srcs/key.c							\
 				srcs/lmlx.c							\
 				srcs/main.c							\
+				srcs/save_bmp.c						\
 				srcs/parsing/color_miner.c			\
 				srcs/parsing/detect_line.c			\
 				srcs/parsing/free_file.c			\
