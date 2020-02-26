@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 14:13:29 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/08 15:13:23 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/26 11:30:03 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ t_bool	parsing_map(char *map, int curr_line)
 	player_saw = FALSE;
 	if (!(arr = l_split(map, "\n")))
 		return (map_print_err(ERR_MAP_MEMALLOC, curr_line, arr));
-	if (l_stris_c(arr[0], '1') == FALSE)
+	if (l_stris_c(arr[0], '1') == FALSE ||
+		l_stris_c(arr[l_strarr_len(arr) - 1], '1') == FALSE)
 		return (map_print_err(ERR_MAP_HOLE, curr_line, arr));
 	len_arr = l_strarr_len(arr);
 	while (i < len_arr)

@@ -6,7 +6,7 @@
 #    By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 09:12:12 by Lobbyra           #+#    #+#              #
-#    Updated: 2020/02/26 09:55:29 by jecaudal         ###   ########.fr        #
+#    Updated: 2020/02/26 11:34:22 by jecaudal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,6 @@ NAME		=	cub3d
 
 SRCS		=	srcs/cub_exit.c						\
 				srcs/cub_side_hited.c				\
-				srcs/debug/print_t_err.c			\
-				srcs/debug/print_t_file.c			\
-				srcs/debug/print_t_info.c			\
-				srcs/debug/print_t_sig.c			\
-				srcs/debug/print_t_stock.c			\
-				srcs/debug/print_t_sprites_coords.c	\
 				srcs/draw_background.c				\
 				srcs/draw_sprites_utils.c			\
 				srcs/draw_sprites.c					\
@@ -66,7 +60,7 @@ CC			=	gcc
 
 CFLAGS		+=	-W -Wall -Wextra -Werror -ansi -pedantic -I headers -I libc_lobb/headers/
 
-MLX			=	-lmlx -framework OpenGL -framework AppKit
+MLX			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 LIB			=	-Llibc_lobb/ -lclobb
 

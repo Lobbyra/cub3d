@@ -6,7 +6,7 @@
 /*   By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:59:54 by Lobbyra           #+#    #+#             */
-/*   Updated: 2020/02/25 16:57:26 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/26 10:42:53 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,15 +140,6 @@
 
 typedef int		t_err;
 typedef int		t_sig;
-
-/*
-** ### Debug Declarations ###
-*/
-void			print_t_sig(t_sig sig);
-void			print_t_err(t_err err);
-void			print_t_file(t_file *file);
-void			print_t_info(t_info *info);
-void			print_t_sprites_coords(t_coord *coords, int n_coords);
 
 /*
 ** ### Parsing Declarations ###

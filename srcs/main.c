@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 09:50:28 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/26 09:58:18 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/26 11:32:46 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ static int		panic_window(t_stock *stock)
 
 static t_bool	is_right_argvs(int argc, char **argv)
 {
-	if ((argc == 2 && l_strcmp(argv[1], "-save") == 0) || argc < 2)
+	if ((argc == 2 && l_strcmp(argv[1], "--save") == 0) || argc < 2)
 	{
 		l_printf("Error\nMap file is missing.");
 		return (FALSE);
 	}
-	else if ((argc == 2 && l_strcmp(argv[1], "-save") == 0) ||
-	(argc == 3 && l_strcmp(argv[1], "-save") != 0) || argc > 3)
+	else if ((argc == 2 && l_strcmp(argv[1], "--save") == 0) ||
+	(argc == 3 && l_strcmp(argv[1], "--save") != 0) || argc > 3)
 	{
 		l_printf("Error\nToo many arguments.\n");
-		l_printf("USAGE -> ./cub3d [-save] *.cub\n");
+		l_printf("USAGE -> ./cub3d [--save] *.cub\n");
 		return (FALSE);
 	}
 	else if (l_strcmp("--help", argv[1]) == 0)
 	{
-		l_printf("USAGE -> ./cub3d [-save] *.cub\n");
+		l_printf("USAGE -> ./cub3d [--save] *.cub\n");
 		return (FALSE);
 	}
 	return (TRUE);
@@ -44,7 +44,7 @@ static t_bool	is_right_argvs(int argc, char **argv)
 
 static t_info	*main_init_info(char **argv)
 {
-	if (l_strcmp(argv[1], "-save") == 0)
+	if (l_strcmp(argv[1], "--save") == 0)
 		return (parsing(argv[2]));
 	else
 		return (parsing(argv[1]));
@@ -72,7 +72,7 @@ int				main(int argc, char **argv)
 		cub_exit(s);
 	if (init_stock_sprites(s) == 1)
 		cub_exit(s);
-	if (l_strcmp(argv[1], "-save") != 0)
+	if (l_strcmp(argv[1], "--save") != 0)
 		raycasting(s);
 	else
 		save_bmp(s);
