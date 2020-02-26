@@ -6,7 +6,7 @@
 #    By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 09:12:12 by Lobbyra           #+#    #+#              #
-#    Updated: 2020/02/25 16:41:03 by jecaudal         ###   ########.fr        #
+#    Updated: 2020/02/26 09:55:29 by jecaudal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,13 +73,13 @@ LIB			=	-Llibc_lobb/ -lclobb
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJS)
-				$(CC) $(MLX) $(LIB) $(OBJS)
+				$(CC) -o $(NAME) $(MLX) $(LIB) $(OBJS)
 
 turbo		:	clean $(OBJS)
-				$(CC) -O3 $(MLX) $(LIB) $(OBJS)
+				$(CC) -o $(NAME) -O3 $(MLX) $(LIB) $(OBJS)
 
 sanitize	:	$(OBJS)
-				$(CC) -fsanitize=address $(MLX) $(LIB) $(OBJS)
+				$(CC) -o $(NAME) -fsanitize=address $(MLX) $(LIB) $(OBJS)
 
 clean		:
 				rm -f $(OBJS)
