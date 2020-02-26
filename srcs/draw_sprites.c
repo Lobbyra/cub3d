@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 15:12:14 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/24 16:54:30 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/26 09:28:58 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	drawing_ext(t_stock *s, t_sprite *sp, int x_stripe, int x_text)
 		while (y_stripe < sp->drawendy)
 		{
 			clr = y_stripe * 256 - s->h * 128 + sp->spriteh * 128;
-			y_text = ((clr * s->text_s->height) / sp->spriteh) / 256;
-			clr = s->text_sp->data_ptr[s->text_s->width * y_text + x_text];
+			y_text = ((clr * s->text_sp->height) / sp->spriteh) / 256;
+			clr = s->text_sp->data_ptr[s->text_sp->width * y_text + x_text];
 			if ((clr & 0x00FFFFFF) != 0)
 				s->img->data_ptr[y_stripe * s->img->width + x_stripe] = clr;
 			y_stripe++;
@@ -43,7 +43,7 @@ static void	drawing(t_stock *s, t_sprite *sp)
 	while (x_stripe < sp->drawendx)
 	{
 		x_text = (int)(256 * (x_stripe - (-sp->spritew / 2 + sp->spritescreenx))
-		* s->text_s->width / sp->spritew) / 256;
+		* s->text_sp->width / sp->spritew) / 256;
 		if (sp->transformy > 0 && x_stripe > 0 && x_stripe < s->w
 			&& sp->transformy < s->zbuffer[x_stripe])
 		{

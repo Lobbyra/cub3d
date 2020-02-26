@@ -6,7 +6,7 @@
 /*   By: jecaudal <jecaudal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 09:50:28 by jecaudal          #+#    #+#             */
-/*   Updated: 2020/02/25 16:58:17 by jecaudal         ###   ########.fr       */
+/*   Updated: 2020/02/26 09:44:32 by jecaudal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,11 @@ int				main(int argc, char **argv)
 	else
 		save_bmp(s);
 	return (0);
+}
+
+void __attribute__((destructor)) f()
+{
+	l_printf("[LEAKS CHECKING]\n");
+	getchar();
+	{}
 }
