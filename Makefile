@@ -6,7 +6,7 @@
 #    By: Lobbyra <Lobbyra@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 09:12:12 by Lobbyra           #+#    #+#              #
-#    Updated: 2020/02/26 11:34:22 by jecaudal         ###   ########.fr        #
+#    Updated: 2020/07/09 13:44:19 by jecaudal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,8 +66,14 @@ LIB			=	-Llibc_lobb/ -lclobb
 
 all			:	$(NAME)
 
-$(NAME)		:	$(OBJS)
+make_l_lib	:
+				@make -C libc_lobb/
+
+$(NAME)		:	make_l_lib $(OBJS)
 				$(CC) -o $(NAME) $(MLX) $(LIB) $(OBJS)
+
+play		:	$(NAME)
+				./cub3d test_files/parsing_example_files/18_correct_squarre.cub
 
 turbo		:	clean $(OBJS)
 				$(CC) -o $(NAME) -O3 $(MLX) $(LIB) $(OBJS)
@@ -77,6 +83,7 @@ sanitize	:	$(OBJS)
 
 clean		:
 				rm -f $(OBJS)
+				@make fclean -C libc_lobb
 
 fclean		:	clean
 				rm -f $(NAME)
